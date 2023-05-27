@@ -139,6 +139,7 @@ if game.PlaceId == 6206893534 then
             while true do
                 if not getgenv().autostrength then return end
                 game:GetService("ReplicatedStorage").Remotes.DoubleReg:FireServer()
+                game:GetService("ReplicatedStorage").Remotes.DoubleReg:FireServer()
                 wait()
             end
         end    
