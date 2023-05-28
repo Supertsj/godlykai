@@ -39,6 +39,19 @@ if game.PlaceId == 6206893534 then
             game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
         end    
     })
+
+    MainTab:AddToggle({
+        Name = "Anti Afk",
+        Default = false,
+        Callback = function(v)
+            local VirtualUser=game:service'VirtualUser'
+            game:service'Players'.LocalPlayer.Idled:connect(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+            end)
+            warn("Anti-Afk has Loaded")
+        end    
+    })
     
     local MainSection = MainTab:AddSection({
         Name = "Fun Stuff :)"
