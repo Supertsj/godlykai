@@ -1,13 +1,6 @@
 if game.PlaceId == 6206893534 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Supertsj/PenguinMercuryKai/main/PenguinMercuryKai",true))();
     local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/Supertsj/PenguinMercuryKai/main/PenguinMercuryKai",true))();
-    
-    local players = game:GetService("Players"):GetChildren()
-    local playertable = {}
-
-    for i,v in pairs(players) do
-        table.insert(playertable, v.Name)
-    end
 
     --Globals
     LP = game.Players.LocalPlayer
@@ -58,7 +51,28 @@ if game.PlaceId == 6206893534 then
         end
     }
 
-    
+    MainTab:Button{
+        Name = "No Cooldown",
+        Description = "Make it so that u don't have any cooldown!",
+        Callback = function(v) 
+            local old
+            old = hookfunction(wait, newcclosure(function(...)
+            return old()
+            end))
+            local balls
+            balls= hookfunction(task.wait, newcclosure(function(...)
+            return balls()
+            end))
+            wait(0.001)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "no cooldown successfullly activated!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
     MainTab:Button{
         Name = "Regen HP",
         Description = "Makes your hp full",
@@ -315,7 +329,7 @@ if game.PlaceId == 6206893534 then
     FarmTab:Toggle{
         Name = "Auto Bench",
         StartingState = false,
-        Description = "Automaticly use Bench for u,Turn on either situp or pushup to gain insane hp!",
+        Description = "Automaticly use Bench for you,Turn on either situp or pushup to gain insane hp!",
         Callback = function(v)
             getgenv().autobench = v
             while true do
