@@ -1,114 +1,1348 @@
-if game:GetService("Players").LocalPlayer.Name == "Its_Riot99" then
-	local ScreenGui = Instance.new("ScreenGui")
-	local main = Instance.new("Frame")
-	local label = Instance.new("TextLabel")
-	local TextButton = Instance.new("TextButton")
-	local message = Instance.new("TextLabel")
-	local message2 = Instance.new("TextLabel")
-	local message3 = Instance.new("TextLabel")
-	local message4 = Instance.new("TextLabel")
-	local continue = Instance.new("TextButton")
+if game.PlaceId == 6206893534 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Supertsj/PenguinMercuryKai/main/PenguinMercuryKai",true))();
+    local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/Supertsj/PenguinMercuryKai/main/PenguinMercuryKai",true))();
 
-	--Properties:
+    --Globals
+    LP = game.Players.LocalPlayer
 
-	ScreenGui.Parent = game.CoreGui
+    local GUI = Mercury:Create{
+        Name = "Penguin HUB",
+        Size = UDim2.fromOffset(600, 400),
+        Theme = Mercury.Themes.Dark,
+        Link = "https://discord.gg/SbZeF3CZ"
+    }
 
-	main.Name = "main"
-	main.Parent = ScreenGui
-	main.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	main.Position = UDim2.new(0.296582609, 0, 0.100609757, 0)
-	main.Size = UDim2.new(0, 333, 0, 339)
-	main.Active = true
-	main	.Draggable = true
+    local MainTab = GUI:Tab{
+        Name = "Main",
+        Icon = "rbxassetid://13594765716"
+    }
 
-	label.Name = "label"
-	label.Parent = main
-	label.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	label.Position = UDim2.new(0, 0, -0.00217917562, 0)
-	label.Size = UDim2.new(0, 279, 0, 50)
-	label.Font = Enum.Font.SourceSans
-	label.Text = "Special For Joy"
-	label.TextColor3 = Color3.fromRGB(0, 0, 0)
-	label.TextScaled = true
-	label.TextSize = 14.000
-	label.TextWrapped = true
+    MainTab:Slider{
+        Name = "Walkspeed!",
+        Default = 16,
+        Min = 0,
+        Max = 1000,
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+        end
+    }
 
-	TextButton.Parent = main
-	TextButton.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	TextButton.Position = UDim2.new(0.837837875, 0, -0.00217917562, 0)
-	TextButton.Size = UDim2.new(0, 52, 0, 50)
-	TextButton.Font = Enum.Font.SourceSans
-	TextButton.Text = "X"
-	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextButton.TextScaled = true
-	TextButton.TextSize = 14.000
-	TextButton.TextWrapped = true
-	TextButton.MouseButton1Down:connect(function()
-		main.Visible = false
-	end)
+    MainTab:Slider{
+        Name = "Jumppower!",
+        Default = 50,
+        Min = 0,
+        Max = 500,
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+        end
+    }
 
-	message.Name = "message"
-	message.Parent = main
-	message.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	message.Position = UDim2.new(0, 0, 0.140783817, 0)
-	message.Size = UDim2.new(0, 333, 0, 56)
-	message.Font = Enum.Font.SourceSans
-	message.Text = "I can read mind baby."
-	message.TextColor3 = Color3.fromRGB(255, 255, 255)
-	message.TextScaled = true
-	message.TextSize = 14.000
-	message.TextWrapped = true
+    MainTab:Toggle{
+        Name = "Anti Afk",
+        StartingState = true,
+        Description = "Make it so that u cant disconnect form idle",
+        Callback = function()
+            local VirtualUser=game:service'VirtualUser'
+            game:service'Players'.LocalPlayer.Idled:connect(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+            end)
+            warn("Anti-Afk has Loaded")
+        end
+    }
 
-	message2.Name = "message2"
-	message2.Parent = main
-	message2.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	message2.Position = UDim2.new(0, 0, 0.307503581, 0)
-	message2.Size = UDim2.new(0, 333, 0, 56)
-	message2.Font = Enum.Font.SourceSans
-	message2.Text = "hmm....., you're joy aren't u"
-	message2.TextColor3 = Color3.fromRGB(255, 255, 255)
-	message2.TextScaled = true
-	message2.TextSize = 14.000
-	message2.TextWrapped = true
+    MainTab:Button{
+        Name = "No Cooldown",
+        Description = "Make it so that u don't have any cooldown!",
+        Callback = function(v) 
+            local old
+            old = hookfunction(wait, newcclosure(function(...)
+            return old()
+            end))
+            local balls
+            balls= hookfunction(task.wait, newcclosure(function(...)
+            return balls()
+            end))
+            wait(0.001)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "no cooldown successfullly activated!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
 
-	message3.Name = "message3"
-	message3.Parent = main
-	message3.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	message3.Position = UDim2.new(0, 0, 0.470529497, 0)
-	message3.Size = UDim2.new(0, 333, 0, 56)
-	message3.Font = Enum.Font.SourceSans
-	message3.Text = "No? Nah i'm sure you're joy"
-	message3.TextColor3 = Color3.fromRGB(255, 255, 255)
-	message3.TextScaled = true
-	message3.TextSize = 14.000
-	message3.TextWrapped = true
+    MainTab:Button{
+        Name = "Regen HP",
+        Description = "Makes your hp full",
+        Callback = function(v) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(86.1433258, 3.40000033, 62.739399, 0.991300523, -2.61786204e-10, -0.131618053, 2.08864565e-10, 1, -4.158901e-10, 0.131618053, 3.84781734e-10, 0.991300523)
+            wait(0.005)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(78.9045105, 3.42875648, 83.7675018, -0.996400654, -1.74054815e-08, 0.0847685188, -8.00758215e-09, 1, 1.11205445e-07, -0.0847685188, 1.10126386e-07, -0.996400654)
+            wait(0.005)
+            local Event = game:GetService("ReplicatedStorage").Remotes.PushUp
+            Event:FireServer()
+        end
+    }
 
-	message4.Name = "message4"
-	message4.Parent = main
-	message4.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	message4.Position = UDim2.new(0, 0, 0.634299457, 0)
-	message4.Size = UDim2.new(0, 333, 0, 56)
-	message4.Font = Enum.Font.SourceSans
-	message4.Text = "JOY IS GAYYYYYY!!!!"
-	message4.TextColor3 = Color3.fromRGB(255, 255, 255)
-	message4.TextScaled = true
-	message4.TextSize = 14.000
-	message4.TextWrapped = true
+    MainTab:Button{
+        Name = "Rejoin",
+        Description = "Only works in public server!",
+        Callback = function(v) 
+            loadstring(game:HttpGet("https://pastebin.com/raw/1gtVMUz3"))()
+        end
+    }
 
-	continue.Name = "continue"
-	continue.Parent = main
-	continue.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
-	continue.Position = UDim2.new(0.00300300308, 0, 0.852507412, 0)
-	continue.Size = UDim2.new(0, 332, 0, 50)
-	continue.Font = Enum.Font.SourceSans
-	continue.Text = "Continue to script"
-	continue.TextColor3 = Color3.fromRGB(255, 255, 255)
-	continue.TextScaled = true
-	continue.TextSize = 14.000
-	continue.TextWrapped = true
-	continue.MouseButton1Down:connect(function()
-		do local v0=tonumber;local v1=string.byte;local v2=string.char;local v3=string.sub;local v4=string.gsub;local v5=string.rep;local v6=table.concat;local v7=table.insert;local v8=math.ldexp;local v9=getfenv or function()return _ENV;end ;local v10=setmetatable;local v11=pcall;local v12=select;local v13=unpack or table.unpack ;local v14=tonumber;local function v15(v16,v17,...)local v18=0;local v19;local v20;local v21;local v22;local v23;local v24;local v25;local v26;local v27;local v28;local v29;local v30;while true do if (v18==5) then v27=v24;v28=nil;function v28(...)return {...},v12("#",...);end v18=6;end if (v18==1) then v21=nil;function v21(v31,v32,v33)if v33 then local v84=(v31/((5 -(1 + 2))^(v32-(2 -1))))%((3 -1)^(((v33-1) -(v32-(2 -1))) + (620 -(555 + 64)))) ;return v84-(v84%((1809 -(282 + 595)) -((2494 -(1523 + 114)) + 67 + 7))) ;else local v85=2^(v32-(569 -(367 + 201))) ;return (((v31%(v85 + v85))>=v85) and (928 -(214 + 713))) or ((0 -0) + 0) ;end end v22=nil;v18=2;end if (v18==3) then v24=nil;function v24()local v34=(2540 -1475) -(68 + 997) ;local v35;local v36;local v37;local v38;while true do if ((1270 -(226 + 1044))==v34) then v35,v36,v37,v38=v1(v16,v19,v19 + 3 );v19=v19 + (17 -13) ;v34=118 -(32 + 85) ;end if (v34==(1 + 0)) then return (v38 * (3720433 + 13056783)) + (v37 * 65536) + (v36 * (1213 -(892 + (120 -55)))) + v35 ;end end end v25=nil;v18=4;end if (v18==6) then v29=nil;function v29()local v39=0 -0 ;local v40;local v41;local v42;local v43;local v44;local v45;local v46;local v47;while true do if (v39==(170 -(9 + 157))) then while true do if (v40~=(240 -(64 + 174))) then else local v97=0 -0 ;local v98;while true do if ((1824 -(1195 + 629))~=v97) then else v98=336 -(144 + 192) ;while true do if ((1 -0)~=v98) then else v40=219 -(42 + 174) ;break;end if (v98==(241 -(187 + 54))) then local v130=0 + 0 ;while true do if ((781 -(162 + 618))==v130) then v98=1;break;end if ((0 + 0)~=v130) then else v45=nil;v46=nil;v130=1 + 0 ;end end end end break;end end end if (v40==0) then local v99=0;while true do if (v99~=(1 + 0)) then else v40=1;break;end if (v99==(0 + 0)) then v41=0;v42=nil;v99=1;end end end if (v40==(6 -3)) then v47=nil;while true do local v102=0 -0 ;local v103;while true do if (v102==(0 + 0)) then v103=1636 -(1373 + 263) ;while true do if (v103==(1000 -(451 + 549))) then local v136=0 + 0 ;while true do if (v136~=(1 + 0)) then else v103=1 -0 ;break;end if (v136~=(0 -0)) then else if (v41==(2 + 0)) then local v149=1384 -(746 + 638) ;local v150;local v151;while true do if (v149~=(0 + 0)) then else v150=1933 -(565 + 1368) ;v151=nil;v149=1;end if (v149==(1 -0)) then while true do if (v150~=(0 -0)) then else v151=341 -(218 + 123) ;while true do local v159=1581 -(1535 + 46) ;local v160;while true do if ((0 + 0)~=v159) then else v160=0 + 0 ;while true do if (v160==(1661 -(1477 + 184))) then if (v151~=0) then else local v173=560 -(306 + 254) ;local v174;while true do if (v173~=(0 + 0)) then else v174=0;while true do if (v174~=(856 -(564 + 292))) then else local v176=0 -0 ;while true do if (v176~=1) then else v174=1 -0 ;break;end if (v176==0) then for v180=1,v24() do local v181=1467 -(899 + 568) ;local v182;while true do if (v181==(304 -(244 + 60))) then v182=v22();if (v21(v182,1,1 + 0 )~=(476 -(41 + 435))) then else local v186=0;local v187;local v188;local v189;local v190;while true do if (v186~=(1002 -(938 + 63))) then else v189=nil;v190=nil;v186=2;end if (v186==(0 + 0)) then v187=0;v188=nil;v186=1;end if (v186~=2) then else while true do if (3~=v187) then else if (v21(v189,3 + 0 ,7 -4 )~=(1126 -(936 + 189))) then else v190[2 + 2 ]=v47[v190[1617 -(1565 + 48) ]];end v42[v180]=v190;break;end if (v187==(604 -(268 + 335))) then local v192=0;local v193;while true do if (v192~=0) then else v193=290 -(60 + 230) ;while true do if (v193==(573 -(426 + 146))) then v187=1 + 1 ;break;end if (v193~=(1456 -(282 + 1174))) then else local v203=811 -(569 + 242) ;while true do if (v203~=(268 -(176 + 91))) then else v193=2 -1 ;break;end if (v203~=(0 -0)) then else v190={v23(),v23(),nil,nil};if (v188==(1875 -(157 + 1718))) then local v205=1251 -(721 + 530) ;local v206;while true do if ((0 + 0)~=v205) then else v206=1271 -(945 + 326) ;while true do if ((0 -0)==v206) then v190[3]=v23();v190[13 -9 ]=v23();break;end end break;end end elseif (v188==(1 + 0)) then v190[1021 -(697 + 321) ]=v24();elseif (v188==(702 -(271 + 429))) then v190[3]=v24() -(2^(33 -17)) ;elseif (v188==3) then local v211=0;local v212;local v213;local v214;while true do if (v211==0) then v212=0 -0 ;v213=nil;v211=1 + 0 ;end if (v211==(1 + 0)) then v214=nil;while true do if (v212~=(1501 -(1408 + 92))) then else while true do if ((0 -0)==v213) then v214=1086 -(461 + 625) ;while true do if (v214~=0) then else v190[1291 -(993 + 295) ]=v24() -((1 + 1)^(1187 -(418 + 753))) ;v190[615 -(602 + 9) ]=v23();break;end end break;end end break;end if (v212==(0 + 0)) then local v215=0;while true do if ((0 + 0)~=v215) then else v213=0 + 0 ;v214=nil;v215=1 + 0 ;end if (v215~=(530 -(406 + 123))) then else v212=1770 -(1749 + 20) ;break;end end end end break;end end end v203=1 + 0 ;end end end end break;end end end if (v187==(949 -(245 + 702))) then local v194=0 -0 ;while true do if (v194==(1322 -(1249 + 73))) then if (v21(v189,1 + 0 ,1146 -(466 + 679) )==(2 -1)) then v190[5 -3 ]=v47[v190[1900 -(260 + 1638) ]];end if (v21(v189,442 -(382 + 58) ,2)==(1901 -(106 + 1794))) then v190[1 + 2 ]=v47[v190[1 + 2 ]];end v194=2 -1 ;end if (v194~=(2 -1)) then else v187=8 -5 ;break;end end end if (v187==0) then local v195=1205 -(902 + 303) ;local v196;while true do if (v195~=0) then else v196=0 -0 ;while true do if ((114 -(4 + 110))~=v196) then else local v204=0 + 0 ;while true do if (v204~=(584 -(57 + 527))) then else v188=v21(v182,216 -(22 + 192) ,686 -(483 + 200) );v189=v21(v182,1467 -(1404 + 59) ,6);v204=1428 -(41 + 1386) ;end if (v204==(1 -0)) then v196=104 -(17 + 86) ;break;end end end if (v196~=1) then else v187=1 + 0 ;break;end end break;end end end end break;end end end break;end end end for v183=1 -0 ,v24() do v43[v183-1 ]=v29();end v176=2 -1 ;end end end if ((167 -(122 + 44))==v174) then v151=1 -0 ;break;end end break;end end end if ((1 -0)~=v151) then else return v45;end break;end end break;end end end break;end end break;end end end if (v41==(3 -2)) then local v152=0 + 0 ;local v153;local v154;while true do if (v152~=0) then else v153=0;v154=nil;v152=237 -(141 + 95) ;end if (v152~=(1 + 0)) then else while true do if (v153==(0 -0)) then v154=0;while true do if (v154==(65 -(30 + 35))) then local v161=0;while true do if (v161~=(1 + 0)) then else v154=1258 -(1043 + 214) ;break;end if (v161==0) then local v163=0 + 0 ;while true do if (1==v163) then v161=3 -2 ;break;end if (v163==0) then v46=v24();v47={};v163=1;end end end end end if ((1213 -(323 + 889))==v154) then local v162=0 -0 ;while true do if (v162==(1 -0)) then v154=582 -(361 + 219) ;break;end if (v162~=(320 -(53 + 267))) then else for v167=1 + 0 ,v46 do local v168=0;local v169;local v170;local v171;local v172;while true do if (v168==2) then while true do if (v169==0) then local v175=0 -0 ;while true do if (v175==1) then v169=766 -(574 + 191) ;break;end if (v175~=(413 -(15 + 398))) then else v170=982 -(18 + 964) ;v171=nil;v175=1 + 0 ;end end end if (v169~=1) then else v172=nil;while true do if (v170~=(850 -(254 + 595))) then else if (v171==1) then v172=v22()~=(0 -0) ;elseif (v171==2) then v172=v25();elseif (v171~=(3 -0)) then else v172=v26();end v47[v167]=v172;break;end if (v170~=0) then else local v178=0 + 0 ;local v179;while true do if ((0 -0)~=v178) then else v179=0;while true do if ((1 + 0)==v179) then v170=851 -(20 + 830) ;break;end if (v179~=(0 -0)) then else local v185=0;while true do if (v185~=(939 -(714 + 225))) then else v171=v22();v172=nil;v185=1 + 0 ;end if (v185==(127 -(116 + 10))) then v179=1;break;end end end end break;end end end end break;end end break;end if (v168~=1) then else v171=nil;v172=nil;v168=1 + 1 ;end if (v168==(0 + 0)) then v169=806 -(118 + 688) ;v170=nil;v168=739 -(542 + 196) ;end end end v45[3]=v22();v162=1 -0 ;end end end if (v154==(1 + 1)) then v41=1 + 1 ;break;end end break;end end break;end end end v136=1 + 0 ;end end end if (v103==(733 -(16 + 716))) then if (v41==0) then local v144=0 -0 ;local v145;local v146;while true do if (v144==(0 + 0)) then v145=0 -0 ;v146=nil;v144=1;end if (v144==1) then while true do if (v145~=(0 -0)) then else v146=1551 -(1126 + 425) ;while true do if (v146==(0 -0)) then local v155=0 -0 ;local v156;while true do if (v155==(405 -(118 + 287))) then v156=0 -0 ;while true do if ((1121 -(118 + 1003))==v156) then local v165=0 -0 ;while true do if (1==v165) then v156=378 -(142 + 235) ;break;end if (v165~=0) then else v42={};v43={};v165=4 -3 ;end end end if (v156~=(1 + 0)) then else v146=978 -(553 + 424) ;break;end end break;end end end if (v146==(1 -0)) then local v157=0;local v158;while true do if (v157==(0 + 0)) then v158=0 + 0 ;while true do if (v158~=(0 + 0)) then else local v166=0 + 0 ;while true do if (v166==(0 + 0)) then v44={};v45={v42,v43,nil,v44};v166=2 -1 ;end if (v166==(860 -(240 + 619))) then v158=2 -1 ;break;end end end if (v158~=(2 -1)) then else v146=1 + 1 ;break;end end break;end end end if (v146==(1 + 1)) then v41=1;break;end end break;end end break;end end end break;end end break;end end end break;end if (v40~=(4 -3)) then else local v100=753 -(239 + 514) ;local v101;while true do if (v100~=(0 + 0)) then else v101=1329 -(797 + 532) ;while true do if (v101~=(1 + 0)) then else v40=1 + 1 ;break;end if (v101~=0) then else v43=nil;v44=nil;v101=1;end end break;end end end end break;end if (v39~=2) then else v44=nil;v45=nil;v39=6 -3 ;end if (v39==(1203 -(373 + 829))) then v42=nil;v43=nil;v39=2;end if (v39==(734 -(476 + 255))) then v46=nil;v47=nil;v39=1134 -(369 + 761) ;end if (0~=v39) then else v40=405 -(255 + 150) ;v41=nil;v39=1 + 0 ;end end end v30=nil;v18=7;end if (v18==4) then function v25()local v48=v24();local v49=v24();local v50=1;local v51=(v21(v49,(1 -0) + 0 ,20) * (2^((487 -(270 + 199)) + 14))) + v48 ;local v52=v21(v49,21,132 -101 );local v53=((v21(v49,103 -71 )==((565 + 1175) -(404 + 1335))) and  -1) or (407 -(183 + (2042 -(580 + 1239)))) ;if (v52==(0 -0)) then if (v51==(0 + 0)) then return v53 * (0 + 0) ;else v52=338 -(10 + 327) ;v50=0 + 0 ;end elseif (v52==(2385 -(118 + 220))) then return ((v51==0) and (v53 * ((1 + 0)/(449 -(108 + 341))))) or (v53 * NaN) ;end return v8(v53,v52-(460 + 563) ) * (v50 + (v51/((8 -6)^(1545 -(711 + (2324 -1542)))))) ;end v26=nil;function v26(v54)local v55;if  not v54 then local v86=0;while true do if (v86==(0 + 0)) then v54=v24();if (v54==(0 + 0)) then return "";end break;end end end v55=v3(v16,v19,(v19 + v54) -(1 + 0 + (1167 -(645 + 522))) );v19=v19 + v54 ;local v56={};for v68=2 -(1791 -(1010 + 780)) , #v55 do v56[v68]=v2(v1(v3(v55,v68,v68)));end return v6(v56);end v18=5;end if (v18==2) then function v22()local v57=0 + 0 ;local v58;while true do if (v57==((0 -0) -0)) then v58=v1(v16,v19,v19);v19=v19 + (2 -1) ;v57=1837 -(1045 + 791) ;end if (v57==(2 -1)) then return v58;end end end v23=nil;function v23()local v59,v60=v1(v16,v19,v19 + 2 );v19=v19 + (507 -(351 + 154)) ;return (v60 * (1830 -(1281 + 293))) + v59 ;end v18=3;end if (v18==0) then v19=1;v20=nil;v16=v4(v3(v16,5),"..",function(v61)if (v1(v61,2)==79) then v20=v0(v3(v61,1,1));return "";else local v87=v2(v0(v61,16));if v20 then local v90=v5(v87,v20);v20=nil;return v90;else return v87;end end end);v18=1;end if (v18==7) then function v30(v62,v63,v64)local v65=v62[1];local v66=v62[2];local v67=v62[3];return function(...)local v70=v65;local v71=v66;local v72=v67;local v73=v28;local v74=1;local v75= -1;local v76={};local v77={...};local v78=v12("#",...) -1 ;local v79={};local v80={};for v88=0,v78 do if (v88>=v72) then v76[v88-v72 ]=v77[v88 + 1 ];else v80[v88]=v77[v88 + 1 ];end end local v81=(v78-v72) + 1 ;local v82;local v83;while true do local v89=0;while true do if (v89==0) then v82=v70[v74];v83=v82[1];v89=1;end if (v89==1) then if (v83<=3) then if (v83<=1) then if (v83>0) then v80[v82[2]]=v64[v82[3]];else local v106=0;local v107;local v108;while true do if (v106==1) then v80[v107 + 1 ]=v108;v80[v107]=v108[v82[4]];break;end if (v106==0) then v107=v82[2];v108=v80[v82[3]];v106=1;end end end elseif (v83>2) then local v109;local v110,v111;local v112;local v113;v80[v82[2]]=v64[v82[3]];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v64[v82[3]];v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v112=v80[v82[3]];v80[v113 + 1 ]=v112;v80[v113]=v112[v82[4]];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v82[3];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v82[3]~=0 ;v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v110,v111=v73(v80[v113](v13(v80,v113 + 1 ,v82[3])));v75=(v111 + v113) -1 ;v109=0;for v131=v113,v75 do v109=v109 + 1 ;v80[v131]=v110[v109];end v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v80[v113]=v80[v113](v13(v80,v113 + 1 ,v75));v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]();v74=v74 + 1 ;v82=v70[v74];do return;end else v80[v82[2]]=v82[3]~=0 ;end elseif (v83<=5) then if (v83>4) then do return;end else local v124=v82[2];v80[v124]=v80[v124](v13(v80,v124 + 1 ,v75));end elseif (v83<=6) then local v126=v82[2];local v127,v128=v73(v80[v126](v13(v80,v126 + 1 ,v82[3])));v75=(v128 + v126) -1 ;local v129=0;for v134=v126,v75 do local v135=0;while true do if (v135==0) then v129=v129 + 1 ;v80[v134]=v127[v129];break;end end end elseif (v83==7) then v80[v82[2]]();else v80[v82[2]]=v82[3];end v74=v74 + 1 ;break;end end end end;end return v30(v29(),{},v17)(...);end end end v15("LOL!043O00030A3O006C6F6164737472696E6703043O0067616D6503073O00482O747047657403433O00682O7470733A2O2F7261772E67697468756275736572636F6E74656E742E636F6D2F537570657274736A2F676F646C796B61692F6D61696E2F50656E6775696E4B616900093O0012033O00013O00122O000100023O00202O00010001000300122O000300046O000400016O000100049O0000026O000100016O00017O00",v9(),...);end
-	end)
-else
-	do local v0=tonumber;local v1=string.byte;local v2=string.char;local v3=string.sub;local v4=string.gsub;local v5=string.rep;local v6=table.concat;local v7=table.insert;local v8=math.ldexp;local v9=getfenv or function()return _ENV;end ;local v10=setmetatable;local v11=pcall;local v12=select;local v13=unpack or table.unpack ;local v14=tonumber;local function v15(v16,v17,...)local v18=0;local v19;local v20;local v21;local v22;local v23;local v24;local v25;local v26;local v27;local v28;local v29;local v30;while true do if (v18==5) then v27=v24;v28=nil;function v28(...)return {...},v12("#",...);end v18=6;end if (v18==1) then v21=nil;function v21(v31,v32,v33)if v33 then local v84=(v31/((5 -(1 + 2))^(v32-(2 -1))))%((3 -1)^(((v33-1) -(v32-(2 -1))) + (620 -(555 + 64)))) ;return v84-(v84%((1809 -(282 + 595)) -((2494 -(1523 + 114)) + 67 + 7))) ;else local v85=2^(v32-(569 -(367 + 201))) ;return (((v31%(v85 + v85))>=v85) and (928 -(214 + 713))) or ((0 -0) + 0) ;end end v22=nil;v18=2;end if (v18==3) then v24=nil;function v24()local v34=(2540 -1475) -(68 + 997) ;local v35;local v36;local v37;local v38;while true do if ((1270 -(226 + 1044))==v34) then v35,v36,v37,v38=v1(v16,v19,v19 + 3 );v19=v19 + (17 -13) ;v34=118 -(32 + 85) ;end if (v34==(1 + 0)) then return (v38 * (3720433 + 13056783)) + (v37 * 65536) + (v36 * (1213 -(892 + (120 -55)))) + v35 ;end end end v25=nil;v18=4;end if (v18==6) then v29=nil;function v29()local v39=0 -0 ;local v40;local v41;local v42;local v43;local v44;local v45;local v46;local v47;while true do if (v39==(170 -(9 + 157))) then while true do if (v40~=(240 -(64 + 174))) then else local v97=0 -0 ;local v98;while true do if ((1824 -(1195 + 629))~=v97) then else v98=336 -(144 + 192) ;while true do if ((1 -0)~=v98) then else v40=219 -(42 + 174) ;break;end if (v98==(241 -(187 + 54))) then local v130=0 + 0 ;while true do if ((781 -(162 + 618))==v130) then v98=1;break;end if ((0 + 0)~=v130) then else v45=nil;v46=nil;v130=1 + 0 ;end end end end break;end end end if (v40==0) then local v99=0;while true do if (v99~=(1 + 0)) then else v40=1;break;end if (v99==(0 + 0)) then v41=0;v42=nil;v99=1;end end end if (v40==(6 -3)) then v47=nil;while true do local v102=0 -0 ;local v103;while true do if (v102==(0 + 0)) then v103=1636 -(1373 + 263) ;while true do if (v103==(1000 -(451 + 549))) then local v136=0 + 0 ;while true do if (v136~=(1 + 0)) then else v103=1 -0 ;break;end if (v136~=(0 -0)) then else if (v41==(2 + 0)) then local v149=1384 -(746 + 638) ;local v150;local v151;while true do if (v149~=(0 + 0)) then else v150=1933 -(565 + 1368) ;v151=nil;v149=1;end if (v149==(1 -0)) then while true do if (v150~=(0 -0)) then else v151=341 -(218 + 123) ;while true do local v159=1581 -(1535 + 46) ;local v160;while true do if ((0 + 0)~=v159) then else v160=0 + 0 ;while true do if (v160==(1661 -(1477 + 184))) then if (v151~=0) then else local v173=560 -(306 + 254) ;local v174;while true do if (v173~=(0 + 0)) then else v174=0;while true do if (v174~=(856 -(564 + 292))) then else local v176=0 -0 ;while true do if (v176~=1) then else v174=1 -0 ;break;end if (v176==0) then for v180=1,v24() do local v181=1467 -(899 + 568) ;local v182;while true do if (v181==(304 -(244 + 60))) then v182=v22();if (v21(v182,1,1 + 0 )~=(476 -(41 + 435))) then else local v186=0;local v187;local v188;local v189;local v190;while true do if (v186~=(1002 -(938 + 63))) then else v189=nil;v190=nil;v186=2;end if (v186==(0 + 0)) then v187=0;v188=nil;v186=1;end if (v186~=2) then else while true do if (3~=v187) then else if (v21(v189,3 + 0 ,7 -4 )~=(1126 -(936 + 189))) then else v190[2 + 2 ]=v47[v190[1617 -(1565 + 48) ]];end v42[v180]=v190;break;end if (v187==(604 -(268 + 335))) then local v192=0;local v193;while true do if (v192~=0) then else v193=290 -(60 + 230) ;while true do if (v193==(573 -(426 + 146))) then v187=1 + 1 ;break;end if (v193~=(1456 -(282 + 1174))) then else local v203=811 -(569 + 242) ;while true do if (v203~=(268 -(176 + 91))) then else v193=2 -1 ;break;end if (v203~=(0 -0)) then else v190={v23(),v23(),nil,nil};if (v188==(1875 -(157 + 1718))) then local v205=1251 -(721 + 530) ;local v206;while true do if ((0 + 0)~=v205) then else v206=1271 -(945 + 326) ;while true do if ((0 -0)==v206) then v190[3]=v23();v190[13 -9 ]=v23();break;end end break;end end elseif (v188==(1 + 0)) then v190[1021 -(697 + 321) ]=v24();elseif (v188==(702 -(271 + 429))) then v190[3]=v24() -(2^(33 -17)) ;elseif (v188==3) then local v211=0;local v212;local v213;local v214;while true do if (v211==0) then v212=0 -0 ;v213=nil;v211=1 + 0 ;end if (v211==(1 + 0)) then v214=nil;while true do if (v212~=(1501 -(1408 + 92))) then else while true do if ((0 -0)==v213) then v214=1086 -(461 + 625) ;while true do if (v214~=0) then else v190[1291 -(993 + 295) ]=v24() -((1 + 1)^(1187 -(418 + 753))) ;v190[615 -(602 + 9) ]=v23();break;end end break;end end break;end if (v212==(0 + 0)) then local v215=0;while true do if ((0 + 0)~=v215) then else v213=0 + 0 ;v214=nil;v215=1 + 0 ;end if (v215~=(530 -(406 + 123))) then else v212=1770 -(1749 + 20) ;break;end end end end break;end end end v203=1 + 0 ;end end end end break;end end end if (v187==(949 -(245 + 702))) then local v194=0 -0 ;while true do if (v194==(1322 -(1249 + 73))) then if (v21(v189,1 + 0 ,1146 -(466 + 679) )==(2 -1)) then v190[5 -3 ]=v47[v190[1900 -(260 + 1638) ]];end if (v21(v189,442 -(382 + 58) ,2)==(1901 -(106 + 1794))) then v190[1 + 2 ]=v47[v190[1 + 2 ]];end v194=2 -1 ;end if (v194~=(2 -1)) then else v187=8 -5 ;break;end end end if (v187==0) then local v195=1205 -(902 + 303) ;local v196;while true do if (v195~=0) then else v196=0 -0 ;while true do if ((114 -(4 + 110))~=v196) then else local v204=0 + 0 ;while true do if (v204~=(584 -(57 + 527))) then else v188=v21(v182,216 -(22 + 192) ,686 -(483 + 200) );v189=v21(v182,1467 -(1404 + 59) ,6);v204=1428 -(41 + 1386) ;end if (v204==(1 -0)) then v196=104 -(17 + 86) ;break;end end end if (v196~=1) then else v187=1 + 0 ;break;end end break;end end end end break;end end end break;end end end for v183=1 -0 ,v24() do v43[v183-1 ]=v29();end v176=2 -1 ;end end end if ((167 -(122 + 44))==v174) then v151=1 -0 ;break;end end break;end end end if ((1 -0)~=v151) then else return v45;end break;end end break;end end end break;end end break;end end end if (v41==(3 -2)) then local v152=0 + 0 ;local v153;local v154;while true do if (v152~=0) then else v153=0;v154=nil;v152=237 -(141 + 95) ;end if (v152~=(1 + 0)) then else while true do if (v153==(0 -0)) then v154=0;while true do if (v154==(65 -(30 + 35))) then local v161=0;while true do if (v161~=(1 + 0)) then else v154=1258 -(1043 + 214) ;break;end if (v161==0) then local v163=0 + 0 ;while true do if (1==v163) then v161=3 -2 ;break;end if (v163==0) then v46=v24();v47={};v163=1;end end end end end if ((1213 -(323 + 889))==v154) then local v162=0 -0 ;while true do if (v162==(1 -0)) then v154=582 -(361 + 219) ;break;end if (v162~=(320 -(53 + 267))) then else for v167=1 + 0 ,v46 do local v168=0;local v169;local v170;local v171;local v172;while true do if (v168==2) then while true do if (v169==0) then local v175=0 -0 ;while true do if (v175==1) then v169=766 -(574 + 191) ;break;end if (v175~=(413 -(15 + 398))) then else v170=982 -(18 + 964) ;v171=nil;v175=1 + 0 ;end end end if (v169~=1) then else v172=nil;while true do if (v170~=(850 -(254 + 595))) then else if (v171==1) then v172=v22()~=(0 -0) ;elseif (v171==2) then v172=v25();elseif (v171~=(3 -0)) then else v172=v26();end v47[v167]=v172;break;end if (v170~=0) then else local v178=0 + 0 ;local v179;while true do if ((0 -0)~=v178) then else v179=0;while true do if ((1 + 0)==v179) then v170=851 -(20 + 830) ;break;end if (v179~=(0 -0)) then else local v185=0;while true do if (v185~=(939 -(714 + 225))) then else v171=v22();v172=nil;v185=1 + 0 ;end if (v185==(127 -(116 + 10))) then v179=1;break;end end end end break;end end end end break;end end break;end if (v168~=1) then else v171=nil;v172=nil;v168=1 + 1 ;end if (v168==(0 + 0)) then v169=806 -(118 + 688) ;v170=nil;v168=739 -(542 + 196) ;end end end v45[3]=v22();v162=1 -0 ;end end end if (v154==(1 + 1)) then v41=1 + 1 ;break;end end break;end end break;end end end v136=1 + 0 ;end end end if (v103==(733 -(16 + 716))) then if (v41==0) then local v144=0 -0 ;local v145;local v146;while true do if (v144==(0 + 0)) then v145=0 -0 ;v146=nil;v144=1;end if (v144==1) then while true do if (v145~=(0 -0)) then else v146=1551 -(1126 + 425) ;while true do if (v146==(0 -0)) then local v155=0 -0 ;local v156;while true do if (v155==(405 -(118 + 287))) then v156=0 -0 ;while true do if ((1121 -(118 + 1003))==v156) then local v165=0 -0 ;while true do if (1==v165) then v156=378 -(142 + 235) ;break;end if (v165~=0) then else v42={};v43={};v165=4 -3 ;end end end if (v156~=(1 + 0)) then else v146=978 -(553 + 424) ;break;end end break;end end end if (v146==(1 -0)) then local v157=0;local v158;while true do if (v157==(0 + 0)) then v158=0 + 0 ;while true do if (v158~=(0 + 0)) then else local v166=0 + 0 ;while true do if (v166==(0 + 0)) then v44={};v45={v42,v43,nil,v44};v166=2 -1 ;end if (v166==(860 -(240 + 619))) then v158=2 -1 ;break;end end end if (v158~=(2 -1)) then else v146=1 + 1 ;break;end end break;end end end if (v146==(1 + 1)) then v41=1;break;end end break;end end break;end end end break;end end break;end end end break;end if (v40~=(4 -3)) then else local v100=753 -(239 + 514) ;local v101;while true do if (v100~=(0 + 0)) then else v101=1329 -(797 + 532) ;while true do if (v101~=(1 + 0)) then else v40=1 + 1 ;break;end if (v101~=0) then else v43=nil;v44=nil;v101=1;end end break;end end end end break;end if (v39~=2) then else v44=nil;v45=nil;v39=6 -3 ;end if (v39==(1203 -(373 + 829))) then v42=nil;v43=nil;v39=2;end if (v39==(734 -(476 + 255))) then v46=nil;v47=nil;v39=1134 -(369 + 761) ;end if (0~=v39) then else v40=405 -(255 + 150) ;v41=nil;v39=1 + 0 ;end end end v30=nil;v18=7;end if (v18==4) then function v25()local v48=v24();local v49=v24();local v50=1;local v51=(v21(v49,(1 -0) + 0 ,20) * (2^((487 -(270 + 199)) + 14))) + v48 ;local v52=v21(v49,21,132 -101 );local v53=((v21(v49,103 -71 )==((565 + 1175) -(404 + 1335))) and  -1) or (407 -(183 + (2042 -(580 + 1239)))) ;if (v52==(0 -0)) then if (v51==(0 + 0)) then return v53 * (0 + 0) ;else v52=338 -(10 + 327) ;v50=0 + 0 ;end elseif (v52==(2385 -(118 + 220))) then return ((v51==0) and (v53 * ((1 + 0)/(449 -(108 + 341))))) or (v53 * NaN) ;end return v8(v53,v52-(460 + 563) ) * (v50 + (v51/((8 -6)^(1545 -(711 + (2324 -1542)))))) ;end v26=nil;function v26(v54)local v55;if  not v54 then local v86=0;while true do if (v86==(0 + 0)) then v54=v24();if (v54==(0 + 0)) then return "";end break;end end end v55=v3(v16,v19,(v19 + v54) -(1 + 0 + (1167 -(645 + 522))) );v19=v19 + v54 ;local v56={};for v68=2 -(1791 -(1010 + 780)) , #v55 do v56[v68]=v2(v1(v3(v55,v68,v68)));end return v6(v56);end v18=5;end if (v18==2) then function v22()local v57=0 + 0 ;local v58;while true do if (v57==((0 -0) -0)) then v58=v1(v16,v19,v19);v19=v19 + (2 -1) ;v57=1837 -(1045 + 791) ;end if (v57==(2 -1)) then return v58;end end end v23=nil;function v23()local v59,v60=v1(v16,v19,v19 + 2 );v19=v19 + (507 -(351 + 154)) ;return (v60 * (1830 -(1281 + 293))) + v59 ;end v18=3;end if (v18==0) then v19=1;v20=nil;v16=v4(v3(v16,5),"..",function(v61)if (v1(v61,2)==79) then v20=v0(v3(v61,1,1));return "";else local v87=v2(v0(v61,16));if v20 then local v90=v5(v87,v20);v20=nil;return v90;else return v87;end end end);v18=1;end if (v18==7) then function v30(v62,v63,v64)local v65=v62[1];local v66=v62[2];local v67=v62[3];return function(...)local v70=v65;local v71=v66;local v72=v67;local v73=v28;local v74=1;local v75= -1;local v76={};local v77={...};local v78=v12("#",...) -1 ;local v79={};local v80={};for v88=0,v78 do if (v88>=v72) then v76[v88-v72 ]=v77[v88 + 1 ];else v80[v88]=v77[v88 + 1 ];end end local v81=(v78-v72) + 1 ;local v82;local v83;while true do local v89=0;while true do if (v89==0) then v82=v70[v74];v83=v82[1];v89=1;end if (v89==1) then if (v83<=3) then if (v83<=1) then if (v83>0) then v80[v82[2]]=v64[v82[3]];else local v106=0;local v107;local v108;while true do if (v106==1) then v80[v107 + 1 ]=v108;v80[v107]=v108[v82[4]];break;end if (v106==0) then v107=v82[2];v108=v80[v82[3]];v106=1;end end end elseif (v83>2) then local v109;local v110,v111;local v112;local v113;v80[v82[2]]=v64[v82[3]];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v64[v82[3]];v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v112=v80[v82[3]];v80[v113 + 1 ]=v112;v80[v113]=v112[v82[4]];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v82[3];v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]=v82[3]~=0 ;v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v110,v111=v73(v80[v113](v13(v80,v113 + 1 ,v82[3])));v75=(v111 + v113) -1 ;v109=0;for v131=v113,v75 do v109=v109 + 1 ;v80[v131]=v110[v109];end v74=v74 + 1 ;v82=v70[v74];v113=v82[2];v80[v113]=v80[v113](v13(v80,v113 + 1 ,v75));v74=v74 + 1 ;v82=v70[v74];v80[v82[2]]();v74=v74 + 1 ;v82=v70[v74];do return;end else v80[v82[2]]=v82[3]~=0 ;end elseif (v83<=5) then if (v83>4) then do return;end else local v124=v82[2];v80[v124]=v80[v124](v13(v80,v124 + 1 ,v75));end elseif (v83<=6) then local v126=v82[2];local v127,v128=v73(v80[v126](v13(v80,v126 + 1 ,v82[3])));v75=(v128 + v126) -1 ;local v129=0;for v134=v126,v75 do local v135=0;while true do if (v135==0) then v129=v129 + 1 ;v80[v134]=v127[v129];break;end end end elseif (v83==7) then v80[v82[2]]();else v80[v82[2]]=v82[3];end v74=v74 + 1 ;break;end end end end;end return v30(v29(),{},v17)(...);end end end v15("LOL!043O00030A3O006C6F6164737472696E6703043O0067616D6503073O00482O747047657403433O00682O7470733A2O2F7261772E67697468756275736572636F6E74656E742E636F6D2F537570657274736A2F676F646C796B61692F6D61696E2F50656E6775696E4B616900093O0012033O00013O00122O000100023O00202O00010001000300122O000300046O000400016O000100049O0000026O000100016O00017O00",v9(),...);end
+    MainTab:Button{
+        Name = "ServerHop",
+        Description = "Only works in public server!",
+        Callback = function(v) 
+            local Player = game.Players.LocalPlayer    
+            local Http = game:GetService("HttpService")
+            local TPS = game:GetService("TeleportService")
+            local Api = "https://games.roblox.com/v1/games/"
+
+            local _place,_id = game.PlaceId, game.JobId
+            local _servers = Api.._place.."/servers/Public?sortOrder=Desc&limit=100"
+            function ListServers(cursor)
+            local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+            return Http:JSONDecode(Raw)
+            end
+
+            local Next; repeat
+            local Servers = ListServers(Next)
+            for i,v in next, Servers.data do
+                if v.playing < v.maxPlayers and v.id ~= _id then
+                    local s,r = pcall(TPS.TeleportToPlaceInstance,TPS,_place,v.id,Player)
+                    if s then break end
+                end
+            end
+            
+            Next = Servers.nextPageCursor
+            until not Next
+        end
+    }
+
+    MainTab:Button{
+        Name = "ServerHop(least people)",
+        Description = "Only works in public server!(joins you in the server with least people)",
+        Callback = function(v) 
+            local Http = game:GetService("HttpService")
+            local TPS = game:GetService("TeleportService")
+            local Api = "https://games.roblox.com/v1/games/"
+
+            local _place = game.PlaceId
+            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+            function ListServers(cursor)
+            local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+            return Http:JSONDecode(Raw)
+            end
+
+            local Server, Next; repeat
+            local Servers = ListServers(Next)
+            Server = Servers.data[1]
+            Next = Servers.nextPageCursor
+            until Server
+
+            TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+        end
+    }
+
+    MainTab:Button{
+        Name = "Stun(not working)",
+        Description = "Stun yourself so that u cannot move",
+        Callback = function()
+            LP.Character.HumanoidRootPart:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "respawn(not working)",
+        Description = "respawn yourself",
+        Callback = function()
+            LP.Character.Humanoid:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "Hide Dojo(not working)",
+        Description = "hides your dojo from other people",
+        Callback = function()
+            LP.Character.Head.PlayerHeader.PlayerDojo:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "Hide Name(not working)",
+        Description = "hides your name from other people",
+        Callback = function()
+            LP.Character.Head.PlayerHeader.PlayerName:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "Hide Health bar(not working)",
+        Description = "hides your hp from other people",
+        Callback = function()
+            LP.Character.Head.PlayerHeader.Health:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "Hide belt(not working)",
+        Description = "hides your belt from other people",
+        Callback = function()
+            LP.Character.Head.PlayerHeader.Belt:Destroy()
+        end
+    }
+
+    MainTab:Button{
+        Name = "Hide All(not working)",
+        Description = "hides everything from other people",
+        Callback = function()
+            LP.Character.Head.PlayerHeader:Destroy()
+        end
+    }
+
+    local FarmTab = GUI:Tab{
+        Name = "Auto Farm(No Gamepass)",
+        Icon = "rbxassetid://13594960554"
+    }
+
+    FarmTab:Button{
+        Name = "No Gamepass Section",
+        Description = "This is just a section thing as a button",
+        Callback = function()
+            GUI:Notification{
+                Title = "ALERT",
+                Text = "this section is for people without gamepass! and btw joy is gay!",
+                Duration = 3,
+                Callback = function() end
+            }
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Push Up",
+        StartingState = false,
+        Description = "automaticly gain hp for u and u can still walk don't worry!",
+        Callback = function(v)
+            getgenv().autopushup = v
+            while true do 
+                if not getgenv().autopushup then return end
+                local Event = game:GetService("ReplicatedStorage").Remotes.PushUp
+                Event:FireServer()
+                wait()
+            end
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Sit Up",
+        StartingState = false,
+        Description = "automaticly gain stamina for u and u can still walk don't worry!",
+        Callback = function(v)
+            getgenv().autositup = v
+            while true do 
+                if not getgenv().autositup then return end
+                local Event = game:GetService("ReplicatedStorage").Remotes.SitUp
+                Event:FireServer()
+                wait()
+            end
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Strength",
+        StartingState = false,
+        Description = "Stand on top of a bag to use this feature!",
+        Callback = function(v)
+            GUI:Notification{
+                Title = "Alert",
+                Text = "Stand on top of a bag to do this or use the stick bag feature",
+                Duration = 5,
+                Callback = function() end
+            }
+            getgenv().autostrength = v
+            while true do
+                if not getgenv().autostrength then return end
+                game:GetService("ReplicatedStorage").Remotes.DoubleReg:FireServer()
+                game:GetService("ReplicatedStorage").Remotes.DoubleReg:FireServer()
+                game:GetService("ReplicatedStorage").Remotes.DoubleReg:FireServer()
+                wait()
+            end 
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Hand Kick",
+        StartingState = false,
+        Description = "automaticly Hand Kick anything ig",
+        Callback = function(v)
+            getgenv().autohandkick = v
+            while true do
+                if not getgenv().autohandkick then return end
+                game:GetService("ReplicatedStorage").Remotes.HandKick:FireServer()
+                game:GetService("ReplicatedStorage").Remotes.HandKick:FireServer()
+                game:GetService("ReplicatedStorage").Remotes.HandKick:FireServer()
+                wait()
+            end
+        end
+    }
+
+    local FarmTab = GUI:Tab{
+        Name = "Auto Farm(Gamepass)",
+        Icon = "rbxassetid://13597864890"
+    }
+
+    FarmTab:Button{
+        Name = "Gamepass Section",
+        Description = "This part is for players with gamepasses!",
+        Callback = function()
+            GUI:Notification{
+                Title = "ALERT",
+                Text = "this section is for people with gamepass! and joy is gay!",
+                Duration = 3,
+                Callback = function() end
+            }
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Dumbells",
+        StartingState = false,
+        Description = "Automaticly use dumbells for you!",
+        Callback = function(v)
+            getgenv().autodumbell = v
+            while true do
+                if not getgenv().autodumbell then return end
+                local A_1 = "Rep"
+                local A_2 = 2
+                local Event = game:GetService("ReplicatedStorage").Remotes.Dumbell
+                Event:FireServer(A_1, A_2)
+                wait()
+            end
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Bench",
+        StartingState = false,
+        Description = "Automaticly use Bench for you,Turn on either situp or pushup to gain insane hp!",
+        Callback = function(v)
+            getgenv().autobench = v
+            while true do
+                if not getgenv().autobench then return end
+                local Event = game:GetService("ReplicatedStorage").Remotes.Bench
+                Event:FireServer()
+                wait()      
+            end
+        end
+    }
+
+    FarmTab:Toggle{
+        Name = "Auto Katana",
+        StartingState = false,
+        Description = "Automaticly swing katana for you!",
+        Callback = function(v)   
+            getgenv().autokatana = v
+            while true do
+                if not getgenv().autokatana then return end
+                local A_1 = 2
+                local Event = game:GetService("ReplicatedStorage").Katana
+                Event:FireServer(A_1)
+                wait()
+            end
+        end
+    }
+
+    local BagTab = GUI:Tab{
+        Name = "Stick Bag",
+        Icon = "rbxassetid://13596363242"
+    }
+
+    BagTab:Toggle{
+        Name = "Red Bag",
+        StartingState = false,
+        Description = "sticks u on top of the first red bag in the safe zone!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97.808876, 9.85557461, 75.6152191, 0.0428906791, -8.49579962e-09, 0.999079764, -4.77750959e-08, 1, 1.05546185e-08, -0.999079764, -4.81838285e-08, 0.0428906791)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Red Bag 2",
+        StartingState = false,
+        Description = "sticks u on top of the second red bag in the safe zone!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97.4920044, 9.8531332, 71.209053, 0.00582391582, 2.44263365e-08, 0.999983013, -2.72469158e-08, 1, -2.42680631e-08, -0.999983013, -2.71051181e-08, 0.00582391582)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Red Bag 3",
+        StartingState = false,
+        Description = "sticks u on top of the third red bag in the safe zone!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97.8537292, 9.85480976, 66.1067047, -0.0675907806, -9.69354641e-09, 0.997713149, -2.8562182e-08, 1, 7.7808e-09, -0.997713149, -2.79709536e-08, -0.0675907806)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 1.0",
+        StartingState = false,
+        Description = "sticks u on top of the Black bag in cobra kai dojo!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(64.0134048, 9.83089066, 68.708313, -0.00362722878, 7.91136685e-08, 0.999993443, 2.4022734e-08, 1, -7.90270533e-08, -0.999993443, 2.3735927e-08, -0.00362722878)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 2.0",
+        StartingState = false,
+        Description = "sticks u on top of the second Black bag in cobra kai dojo!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(64.163353, 9.81847668, 15.9393969, -0.00944456644, 9.08348774e-09, 0.999955416, -3.69445381e-08, 1, -9.43283407e-09, -0.999955416, -3.70319775e-08, -0.00944456644)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag",
+        StartingState = false,
+        Description = "sticks u on top of the Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(56.3307877, 9.82232189, -27.4355011, 0.0140739493, -6.54082868e-08, 0.999900937, 4.88122112e-08, 1, 6.47277147e-08, -0.999900937, 4.78963997e-08, 0.0140739493)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 2",
+        StartingState = false,
+        Description = "sticks u on top of the 2 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(55.8360329, 9.82807827, -37.553669, -0.000540965702, -3.13135793e-08, 0.999999881, 2.20639507e-08, 1, 3.132552e-08, -0.999999881, 2.20808936e-08, -0.000540965702)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 3",
+        StartingState = false,
+        Description = "sticks u on top of the 3 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(56.1942482, 9.81063557, -46.8126717, 0.0779897422, -8.96995811e-09, 0.996954143, -1.22244028e-08, 1, 9.9536539e-09, -0.996954143, -1.29634516e-08, 0.0779897422)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 4",
+        StartingState = false,
+        Description = "sticks u on top of the 4 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(56.2983131, 9.81261826, -56.9600487, 0.106951006, 3.97697448e-08, 0.994264305, 1.51783759e-08, 1, -4.16318748e-08, -0.994264305, 1.95438883e-08, 0.106951006)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 5",
+        StartingState = false,
+        Description = "sticks u on top of the 5 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(55.8267288, 9.81579781, -66.8930817, -0.0963141322, -5.73566226e-08, 0.995351017, -9.64997593e-09, 1, 5.66907516e-08, -0.995351017, -4.14499279e-09, -0.0963141322)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 6",
+        StartingState = false,
+        Description = "sticks u on top of the 6 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4.42928696, 9.81770229, -66.8989716, -0.0779876038, 4.14090984e-09, -0.996954322, 6.84237067e-09, 1, 3.61830965e-09, 0.996954322, -6.53934773e-09, -0.0779876038)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 7",
+        StartingState = false,
+        Description = "sticks u on top of the 7 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4.41697979, 9.8250351, -57.532814, -0.0605762787, -1.33265745e-08, -0.998163581, 3.32759598e-08, 1, -1.53705351e-08, 0.998163581, -3.41459376e-08, -0.0605762787)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 8",
+        StartingState = false,
+        Description = "sticks u on top of the 8 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5.15032911, 9.82865334, -47.7111359, 0.0263267402, -1.13432101e-07, -0.999653399, -1.73549903e-08, 1, -1.13928486e-07, 0.999653399, 2.03483399e-08, 0.0263267402)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 9",
+        StartingState = false,
+        Description = "sticks u on top of the 9 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4.10268402, 9.81972027, -36.8863487, 0.0499049947, -2.24744875e-10, -0.998753965, -2.04100709e-10, 1, -2.35223618e-10, 0.998753965, 2.15585216e-10, 0.0499049947)
+                wait(6)
+            end
+        end
+    }
+
+    BagTab:Toggle{
+        Name = "Black Bag 10",
+        StartingState = false,
+        Description = "sticks u on top of the 10 Black bag in cobra kai dojo 2.0!",
+        Callback = function(v)
+            getgenv().autoblackbag = v
+            while true do
+                if not getgenv().autoblackbag then return end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5.00528669, 9.82517242, -27.4557819, -0.0198858157, 5.50249588e-08, -0.999802232, -7.8526341e-09, 1, 5.51920287e-08, 0.999802232, 8.94861962e-09, -0.0198858157)
+                wait(6)
+            end
+        end
+    }
+
+    local tpTab = GUI:Tab{
+        Name = "Teleport",
+        Icon = "rbxassetid://13596410573"
+    }
+
+    tpTab:Button{
+        Name = "safe zone",
+        Description = "teleport you to the safe zone!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(86.1433258, 3.40000033, 62.739399, 0.991300523, -2.61786204e-10, -0.131618053, 2.08864565e-10, 1, -4.158901e-10, 0.131618053, 3.84781734e-10, 0.991300523)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to safe zone! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Cobra Kai Dojo",
+        Description = "teleport you to Cobra Kai Dojo!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(24.3644619, 3.26012897, 77.408577, 0.999732137, 7.71989406e-09, 0.023143677, -6.06736661e-09, 1, -7.14731883e-08, -0.023143677, 7.13136217e-08, 0.999732137)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Cobra Kai Dojo! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Cobra Kai Dojo empty room",
+        Description = "teleport you to Cobra Kai Dojo empty room!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(36.5608253, 3.28300476, -7.6343255, -0.0582688227, -5.41019363e-09, -0.99830091, -4.39468728e-08, 1, -2.85431057e-09, 0.99830091, 4.37058851e-08, -0.0582688227)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Cobra Kai Dojo empty room! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Cobra Kai Dojo 2.0",
+        Description = "teleport you to Cobra Kai Dojo 2.0!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(29.8183975, 3.25385451, -19.9773006, 0.999811888, -7.8858795e-09, 0.019395072, 7.9467295e-09, 1, -3.06032888e-09, -0.019395072, 3.2138805e-09, 0.999811888)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Cobra Kai Dojo 2.0! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Cobra Kai Dojo office",
+        Description = "teleport you to Cobra Kai Dojo office!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22.0610237, 3.2638545, 6.60392094, 0.973861098, -6.84946997e-08, -0.227144346, 5.61829623e-08, 1, -6.06676025e-08, 0.227144346, 4.63201744e-08, 0.973861098)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Cobra Kai Dojo office! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Teleport Door",
+        Description = "teleport you to Teleport Door!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(96.1069412, 3.20007181, 163.755341, -0.125860646, 4.30841887e-08, -0.992047906, 3.35626176e-08, 1, 3.91714714e-08, 0.992047906, -2.83655801e-08, -0.125860646)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Teleport Door! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "All Valley",
+        Description = "teleport you to All Valley!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(53.3795815, 3.19998646, 255.342041, -0.71467942, 1.74269099e-09, -0.699452162, -2.88365415e-10, 1, 2.78615153e-09, 0.699452162, 2.19290297e-09, -0.71467942)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to All Valley! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Fighting Ring Place",
+        Description = "teleport you to Fighting Ring Place!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-29.7108974, 2.89999914, 78.1261139, 1, 8.04777933e-09, -0.000122898069, -8.03603672e-09, 1, 9.55454738e-08, 0.000122898069, -9.55444861e-08, 1)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Fighting Ring Place! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Pawn Shop",
+        Description = "teleport you to Pawn Shop!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-59.8646584, 3.42875648, 167.270584, 0.743234158, 9.84399673e-10, 0.669031322, -4.39656134e-09, 1, 3.41280737e-09, -0.669031322, -5.47795276e-09, 0.743234158)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Pawn Shop! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 1",
+        Description = "teleport you to Dojo 1!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-157.304199, 3.42875648, 186.155014, 0.999726117, 7.86290357e-08, -0.0234015565, -7.71179955e-08, 1, 6.54725056e-08, 0.0234015565, -6.36498996e-08, 0.999726117)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 1! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 2",
+        Description = "teleport you to Dojo 2!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-260.717865, 3.42875648, 184.51416, 0.999982297, 2.76471415e-08, -0.00594747486, -2.74639387e-08, 1, 3.08850012e-08, 0.00594747486, -3.0721111e-08, 0.999982297)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 2! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 3",
+        Description = "teleport you to Dojo 3!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-363.738373, 3.42875648, 184.378967, 0.999395013, 2.35325661e-08, 0.0347791314, -2.03979411e-08, 1, -9.04842921e-08, -0.0347791314, 8.97201247e-08, 0.999395013)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 3! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 1.0 (near safe zone)",
+        Description = "teleport you to Dojo 1.0 (near safe zone)!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(109.350807, 3.42875648, -130.204163, 0.0814797357, -3.73555231e-08, 0.996675014, -3.54289287e-09, 1, 3.77697802e-08, -0.996675014, -6.60858435e-09, 0.0814797357)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 1.0 (near safe zone)! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 2.0 (near safe zone)",
+        Description = "teleport you to Dojo 2.0 (near safe zone)!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(107.364326, 3.42875648, -234.507462, -0.0115134353, -9.94058382e-08, 0.99993372, -2.42892604e-08, 1, 9.91327624e-08, -0.99993372, -2.3146292e-08, -0.0115134353)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 2.0 (near safe zone)! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Dojo 3.0 (near safe zone)",
+        Description = "teleport you to Dojo 3.0 (near safe zone)!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(106.295906, 3.42875648, -337.450256, 0.00593982916, 2.82684027e-08, 0.999982357, 1.90861034e-08, 1, -2.83822725e-08, -0.999982357, 1.92543528e-08, 0.00593982916)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Dojo 3.0 (near safe zone)! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do",
+        Description = "teleport you to Miyagi Do!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-73.3218384, 2.799999, -942.737915, 0.999580801, 9.77003634e-09, 0.0289529674, -9.39361655e-09, 1, -1.31371056e-08, -0.0289529674, 1.28596254e-08, 0.999580801)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do House",
+        Description = "teleport you to Miyagi Do House!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-37.3229256, 5.40000296, -1008.70032, 0.0471299253, 2.52055781e-08, 0.998888791, -3.51062148e-08, 1, -2.35772255e-08, -0.998888791, -3.39560131e-08, 0.0471299253)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do House! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do House Outside",
+        Description = "teleport you to Miyagi Do House Outside!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-60.9242172, 2.69999909, -1056.80408, 0.980823219, -3.18751354e-08, -0.194899395, 1.64313949e-08, 1, -8.08562888e-08, 0.194899395, 7.61032553e-08, 0.980823219)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do House Outside! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do House Outside 2.0",
+        Description = "teleport you to Miyagi Do House Outside 2.0!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-110.764809, 3.09986901, -1050.86243, 0.996182263, 1.17142278e-08, -0.0872980729, -2.05056261e-09, 1, 1.10787028e-07, 0.0872980729, -1.10185063e-07, 0.996182263)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do House Outside 2.0! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do Water Balance",
+        Description = "teleport you to Miyagi Do Water Balance!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-48.6564941, 2.3666594, -1111.73462, -0.997639596, 4.94328312e-08, -0.0686677024, 4.71744031e-08, 1, 3.45108688e-08, 0.0686677024, 3.11900479e-08, -0.997639596)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do Water Balance! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Miyagi Do House Roof",
+        Description = "teleport you to Miyagi Do House Roof!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-54.5286713, 17.8071537, -1021.94434, 0.999846041, 5.76741144e-08, -0.0175452977, -5.75852503e-08, 1, 5.570016e-09, 0.0175452977, -4.55880844e-09, 0.999846041)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Miyagi Do House Roof! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Middle of whole map",
+        Description = "teleport you to Middle of whole map!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-80.3309402, 2.69999909, -615.249451, -0.986778021, -1.23796084e-08, -0.162077621, -2.52063295e-08, 1, 7.70830795e-08, 0.162077621, 8.01492703e-08, -0.986778021)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Middle of whole map! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Secret Place",
+        Description = "teleport you to Secret Place!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(84.6197662, 3.39999914, 19.3360329, -0.999849439, -2.86357538e-09, -0.0173506495, -2.93520475e-09, 1, 4.10287537e-09, 0.0173506495, 4.15318535e-09, -0.999849439)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Secret Place! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Corner Of Whole Map",
+        Description = "teleport you to Corner Of Whole Map!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-560.475098, 2.69999909, 499.359772, 0.719349325, 2.96258076e-08, -0.694648504, -1.98683594e-08, 1, 2.20737757e-08, 0.694648504, -2.0772295e-09, 0.719349325)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Corner Of Whole Map! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Corner Of Whole Map 2",
+        Description = "teleport you to Corner Of Whole Map 2!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(499.718628, 2.69999909, 499.396606, 0.690445364, 1.6193884e-09, 0.723384559, -1.02953834e-09, 1, -1.25596877e-09, -0.723384559, 1.22425708e-10, 0.690445364)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Corner Of Whole Map 2! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Corner Of Whole Map 3",
+        Description = "teleport you to Corner Of Whole Map 3!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(499.913147, 2.69999909, -1350.59497, -0.787972927, -7.80825147e-08, 0.615709841, -4.82636224e-08, 1, 6.50502585e-08, -0.615709841, 2.15414566e-08, -0.787972927)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Corner Of Whole Map 3! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    tpTab:Button{
+        Name = "Corner Of Whole Map 4",
+        Description = "teleport you to Corner Of Whole Map 4!",
+        Callback = function(v)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-499.063934, 2.69999933, -1350.3186, -0.747083783, -2.59642938e-08, -0.664729893, 5.21236778e-08, 1, -9.76412338e-08, 0.664729893, -1.07594353e-07, -0.747083783)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "You have successfully been teleported to Corner Of Whole Map 4! congrats!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    local scriptTab = GUI:Tab{
+        Name = "Scripts",
+        Icon = "rbxassetid://13597599179"
+    }
+
+    scriptTab:Button{
+        Name = "inf yield",
+        Description = "gives you inf yield!",
+        Callback = function(v)
+            loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+            wait(0.05)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "inf yield has been executed successfully!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    scriptTab:Button{
+        Name = "inf jump(rejoin to stop)",
+        Description = "gives you inf jump, you have to rejoin to stop this script!",
+        Callback = function(v)
+            -- Gui to Lua
+            -- Version: 3.2
+
+            -- Instances:
+
+            local ScreenGui = Instance.new("ScreenGui")
+            local main = Instance.new("Frame")
+            local TextLabel = Instance.new("TextLabel")
+            local Frame = Instance.new("Frame")
+            local INFJUMP = Instance.new("TextButton")
+            local TextLabel_2 = Instance.new("TextLabel")
+
+            --Properties:
+
+            ScreenGui.Parent = game.CoreGui
+
+            main.Name = "main"
+            main.Parent = ScreenGui
+            main.Active = true
+            main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            main.BorderSizePixel = 0
+            main.Position = UDim2.new(0.119258665, 0, 0, 0)
+            main.Size = UDim2.new(0, 146, 0, 28)
+            main.Active = true
+            main.Draggable = false
+
+            TextLabel.Parent = main
+            TextLabel.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+            TextLabel.BorderSizePixel = 0
+            TextLabel.Size = UDim2.new(0, 146, 0, 28)
+            TextLabel.Font = Enum.Font.SciFi
+            TextLabel.Text = "Misc"
+            TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.TextSize = 17.000
+            TextLabel.TextWrapped = true
+
+            Frame.Parent = main
+            Frame.BackgroundColor3 = Color3.fromRGB(86, 86, 86)
+            Frame.BorderSizePixel = 0
+            Frame.Position = UDim2.new(0, 0, 1, 0)
+            Frame.Size = UDim2.new(0, 146, 0, 61)
+
+            INFJUMP.Name = "Penguin INFJUMP"
+            INFJUMP.Parent = main
+            INFJUMP.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            INFJUMP.BorderSizePixel = 0
+            INFJUMP.Position = UDim2.new(0.794520497, 0, 1.6785717, 0)
+            INFJUMP.Size = UDim2.new(0, 21, 0, 21)
+            INFJUMP.Font = Enum.Font.SourceSans
+            INFJUMP.Text = ""
+            INFJUMP.TextColor3 = Color3.fromRGB(0, 0, 0)
+            INFJUMP.TextSize = 14.000
+            INFJUMP.MouseButton1Down:connect(function()
+            local Player = game:GetService'Players'.LocalPlayer;
+            local UIS = game:GetService'UserInputService';
+            
+            _G.JumpHeight = 50;
+            
+            function Action(Object, Function) if Object ~= nil then Function(Object); end end
+            
+            UIS.InputBegan:connect(function(UserInput)
+                if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+                    Action(Player.Character.Humanoid, function(self)
+                        if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                            Action(self.Parent.HumanoidRootPart, function(self)
+                                self.Velocity = Vector3.new(0, _G.JumpHeight, 0);
+                            end)
+                        end
+                    end)
+                end
+            end)
+            end)
+
+            TextLabel_2.Parent = main
+            TextLabel_2.BackgroundColor3 = Color3.fromRGB(38, 38, 38)
+            TextLabel_2.BorderSizePixel = 0
+            TextLabel_2.Position = UDim2.new(0.0547945201, 0, 1.57142854, 0)
+            TextLabel_2.Size = UDim2.new(0, 94, 0, 28)
+            TextLabel_2.Font = Enum.Font.SciFi
+            TextLabel_2.Text = "Inf jump"
+            TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel_2.TextSize = 17.000
+            TextLabel_2.TextWrapped = true
+
+            -- Scripts:
+
+            local function TKDWQ_fake_script() -- INFJUMP.LocalScript 
+            local script = Instance.new('LocalScript', INFJUMP)
+
+            function zigzag(X) return math.acos(math.cos(X*math.pi))/math.pi end
+
+            counter = 0
+
+            while wait(0.1)do
+            script.Parent.BackgroundColor3 = Color3.fromHSV(zigzag(counter),1,1)
+            
+            counter = counter + 0.01
+            end
+            end
+            coroutine.wrap(TKDWQ_fake_script)()
+            wait(0.05)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "inf jump has been executed successfully!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    scriptTab:Button{
+        Name = "Straw HUB",
+        Description = "gives you Straw HUB!",
+        Callback = function(v)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/vep1032/VepStuff/main/COBRA%20KAI%20KARATE%20%7C%20OPEN%20SOURCE%20GUI"))()
+            wait(0.05)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "Straw HUB has been executed successfully!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    scriptTab:Button{
+        Name = "Tea HUB",
+        Description = "gives you Tea HUB!",
+        Callback = function(v)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Aurelius0863/TeaHub/main/Loader.lua"))()
+            wait(0.05)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "Tea HUB has been executed successfully!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+
+    scriptTab:Button{
+        Name = "Penguin Stat Checker",
+        Description = "gives you Penguin Stat Checker!",
+        Callback = function(v)
+            if game.PlaceId == 6206893534 then
+                local ScreenGui = Instance.new("ScreenGui")
+                local MainFrame = Instance.new("Frame")
+                local Title = Instance.new("TextLabel")
+                local NAME = Instance.new("TextBox")
+                local strength = Instance.new("TextLabel")
+                local strengthstat = Instance.new("TextLabel")
+                local durability = Instance.new("TextLabel")
+                local durabilitystat = Instance.new("TextLabel")
+                local speed = Instance.new("TextLabel")
+                local speedstat = Instance.new("TextLabel")
+                local endurance = Instance.new("TextLabel")
+                local endurancestat = Instance.new("TextLabel")
+                local timeplayed = Instance.new("TextLabel")
+                local timeplayedstat = Instance.new("TextLabel")
+                local enter = Instance.new("TextButton")
+                local exit = Instance.new("TextButton")
+                
+                --Properties:
+                
+                ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+                
+                MainFrame.Name = "MainFrame"
+                MainFrame.Parent = ScreenGui
+                MainFrame.Active = true
+                MainFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+                MainFrame.Position = UDim2.new(0.310907245, 0, 0.236080185, 0)
+                MainFrame.Size = UDim2.new(0, 409, 0, 268)
+                MainFrame.Draggable = true
+                
+                Title.Name = "Title"
+                Title.Parent = MainFrame
+                Title.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+                Title.Size = UDim2.new(0, 346, 0, 50)
+                Title.Font = Enum.Font.SourceSans
+                Title.Text = "penguin cobra kai stat checker"
+                Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+                Title.TextScaled = true
+                Title.TextSize = 14.000
+                Title.TextWrapped = true
+                
+                NAME.Name = "NAME"
+                NAME.Parent = MainFrame
+                NAME.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                NAME.Position = UDim2.new(0, 0, 0.211864412, 0)
+                NAME.Size = UDim2.new(0, 337, 0, 30)
+                NAME.Font = Enum.Font.SourceSans
+                NAME.Text = "Players full usrname(no display name)"
+                NAME.TextColor3 = Color3.fromRGB(0, 0, 0)
+                NAME.TextScaled = true
+                NAME.TextSize = 14.000
+                NAME.TextWrapped = true
+                
+                strength.Name = "strength"
+                strength.Parent = MainFrame
+                strength.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                strength.Position = UDim2.new(0, 0, 0.338983059, 0)
+                strength.Size = UDim2.new(0, 185, 0, 32)
+                strength.Font = Enum.Font.SourceSans
+                strength.Text = "STRENGTH"
+                strength.TextColor3 = Color3.fromRGB(0, 0, 0)
+                strength.TextScaled = true
+                strength.TextSize = 14.000
+                strength.TextWrapped = true
+                
+                strengthstat.Name = "strength stat"
+                strengthstat.Parent = MainFrame
+                strengthstat.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                strengthstat.Position = UDim2.new(0.452322721, 0, 0.335820884, 0)
+                strengthstat.Size = UDim2.new(0, 224, 0, 32)
+                strengthstat.Font = Enum.Font.SourceSans
+                strengthstat.Text = " "
+                strengthstat.TextColor3 = Color3.fromRGB(0, 0, 0)
+                strengthstat.TextScaled = true
+                strengthstat.TextSize = 14.000
+                strengthstat.TextWrapped = true
+                
+                durability.Name = "durability"
+                durability.Parent = MainFrame
+                durability.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                durability.Position = UDim2.new(0, 0, 0.474576294, 0)
+                durability.Size = UDim2.new(0, 185, 0, 32)
+                durability.Font = Enum.Font.SourceSans
+                durability.Text = "DURABILITY"
+                durability.TextColor3 = Color3.fromRGB(0, 0, 0)
+                durability.TextScaled = true
+                durability.TextSize = 14.000
+                durability.TextWrapped = true
+                
+                durabilitystat.Name = "durability stat"
+                durabilitystat.Parent = MainFrame
+                durabilitystat.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                durabilitystat.Position = UDim2.new(0.452322721, 0, 0.473880589, 0)
+                durabilitystat.Size = UDim2.new(0, 224, 0, 32)
+                durabilitystat.Font = Enum.Font.SourceSans
+                durabilitystat.Text = " "
+                durabilitystat.TextColor3 = Color3.fromRGB(0, 0, 0)
+                durabilitystat.TextScaled = true
+                durabilitystat.TextSize = 14.000
+                durabilitystat.TextWrapped = true
+                
+                speed.Name = "speed"
+                speed.Parent = MainFrame
+                speed.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                speed.Position = UDim2.new(0, 0, 0.61016947, 0)
+                speed.Size = UDim2.new(0, 185, 0, 32)
+                speed.Font = Enum.Font.SourceSans
+                speed.Text = "SPEED"
+                speed.TextColor3 = Color3.fromRGB(0, 0, 0)
+                speed.TextScaled = true
+                speed.TextSize = 14.000
+                speed.TextWrapped = true
+                
+                speedstat.Name = "speed stat"
+                speedstat.Parent = MainFrame
+                speedstat.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                speedstat.Position = UDim2.new(0.452322751, 0, 0.608208954, 0)
+                speedstat.Size = UDim2.new(0, 224, 0, 32)
+                speedstat.Font = Enum.Font.SourceSans
+                speedstat.Text = " "
+                speedstat.TextColor3 = Color3.fromRGB(0, 0, 0)
+                speedstat.TextScaled = true
+                speedstat.TextSize = 14.000
+                speedstat.TextWrapped = true
+                
+                endurance.Name = "endurance"
+                endurance.Parent = MainFrame
+                endurance.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                endurance.Position = UDim2.new(0, 0, 0.745762706, 0)
+                endurance.Size = UDim2.new(0, 185, 0, 32)
+                endurance.Font = Enum.Font.SourceSans
+                endurance.Text = "ENDURANCE"
+                endurance.TextColor3 = Color3.fromRGB(0, 0, 0)
+                endurance.TextScaled = true
+                endurance.TextSize = 14.000
+                endurance.TextWrapped = true
+                
+                endurancestat.Name = "endurance stat"
+                endurancestat.Parent = MainFrame
+                endurancestat.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                endurancestat.Position = UDim2.new(0.452322751, 0, 0.74253732, 0)
+                endurancestat.Size = UDim2.new(0, 224, 0, 32)
+                endurancestat.Font = Enum.Font.SourceSans
+                endurancestat.Text = " "
+                endurancestat.TextColor3 = Color3.fromRGB(0, 0, 0)
+                endurancestat.TextScaled = true
+                endurancestat.TextSize = 14.000
+                endurancestat.TextWrapped = true
+                
+                timeplayed.Name = "time played"
+                timeplayed.Parent = MainFrame
+                timeplayed.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                timeplayed.Position = UDim2.new(0, 0, 0.879544973, 0)
+                timeplayed.Size = UDim2.new(0, 185, 0, 32)
+                timeplayed.Font = Enum.Font.SourceSans
+                timeplayed.Text = "TIME PLAYED (SECONDS)"
+                timeplayed.TextColor3 = Color3.fromRGB(0, 0, 0)
+                timeplayed.TextScaled = true
+                timeplayed.TextSize = 14.000
+                timeplayed.TextWrapped = true
+                
+                timeplayedstat.Name = "time played stat"
+                timeplayedstat.Parent = MainFrame
+                timeplayedstat.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                timeplayedstat.Position = UDim2.new(0.452322751, 0, 0.880596995, 0)
+                timeplayedstat.Size = UDim2.new(0, 224, 0, 32)
+                timeplayedstat.Font = Enum.Font.SourceSans
+                timeplayedstat.Text = " "
+                timeplayedstat.TextColor3 = Color3.fromRGB(0, 0, 0)
+                timeplayedstat.TextScaled = true
+                timeplayedstat.TextSize = 14.000
+                timeplayedstat.TextWrapped = true
+                
+                enter.Name = "enter"
+                enter.Parent = MainFrame
+                enter.BackgroundColor3 = Color3.fromRGB(103, 103, 103)
+                enter.Position = UDim2.new(0.845965743, 0, 0.208955228, 0)
+                enter.Size = UDim2.new(0, 63, 0, 30)
+                enter.Font = Enum.Font.SourceSans
+                enter.Text = "ENTER"
+                enter.TextColor3 = Color3.fromRGB(0, 0, 0)
+                enter.TextScaled = true
+                enter.TextSize = 14.000
+                enter.TextWrapped = true
+                enter.MouseButton1Click:Connect(function()
+                    if NAME.Text == NAME.Text then
+                        while true do
+                            strengthstat.Text = game:GetService("Players")[NAME.Text].StatsFolder.Strength.Value
+                            durabilitystat.Text = game:GetService("Players")[NAME.Text].StatsFolder.Durability.Value
+                            speedstat.Text = game:GetService("Players")[NAME.Text].StatsFolder.Speed.Value
+                            endurancestat.Text = game:GetService("Players")[NAME.Text].StatsFolder.Endurance.Value
+                            timeplayedstat.Text = game:GetService("Players")[NAME.Text].StatsFolder.TimePlayed.Value
+                            wait()
+                        end
+                    end
+                end)
+                
+                exit.Name = "exit"
+                exit.Parent = MainFrame
+                exit.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+                exit.Position = UDim2.new(0.860635698, 0, 0, 0)
+                exit.Size = UDim2.new(0, 57, 0, 50)
+                exit.Font = Enum.Font.SourceSans
+                exit.Text = "X"
+                exit.TextColor3 = Color3.fromRGB(0, 0, 0)
+                exit.TextScaled = true
+                exit.TextSize = 14.000
+                exit.TextWrapped = true
+                exit.MouseButton1Click:Connect(function()
+                    MainFrame.Visible = false
+                end)
+            end
+            wait(0.05)
+            GUI:Notification{
+                Title = "Success!",
+                Text = "Penguin Stat Checker has been executed successfully!",
+                Duration = 2,
+                Callback = function() end
+            }
+        end
+    }
+    
 end
