@@ -430,6 +430,65 @@ if game.PlaceId == 6206893534 then
                     end
     }
 
+    MainTab:Button{
+        Name = "Click Tp",
+        Description = "Gives you a tool to tp you wherever you click!",
+        Callback = function(v) 
+            mouse = game.Players.LocalPlayer:GetMouse()
+            tool = Instance.new("Tool")
+            tool.RequiresHandle = false
+            tool.Name = "Click Teleport"
+            tool.Activated:connect(function()
+            local pos = mouse.Hit+Vector3.new(0,2.5,0)
+            pos = CFrame.new(pos.X,pos.Y,pos.Z)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+            end)
+            tool.Parent = game.Players.LocalPlayer.Backpack
+        end
+    }
+
+    MainTab:Button{
+        Name = "esp",
+        Description = "Gives you a tool to tp you wherever you click!",
+        Callback = function(args, speaker)
+            --- Tut
+ 
+            local esp_settings = { ---- table for esp settings 
+            textsize = 8,
+            colour = 255,255,255
+            }
+
+            local gui = Instance.new("BillboardGui")
+            local esp = Instance.new("TextLabel",gui) ---- new instances to make the billboard gui and the textlabel
+
+
+
+            gui.Name = "Cracked esp"; ---- properties of the esp
+            gui.ResetOnSpawn = false
+            gui.AlwaysOnTop = true;
+            gui.LightInfluence = 0;
+            gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+            esp.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+            esp.Text = ""
+            esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001);
+            esp.BorderSizePixel = 4;
+            esp.BorderColor3 = Color3.new(esp_settings.colour)
+            esp.BorderSizePixel = 0
+            esp.Font = "GothamSemibold"
+            esp.TextSize = esp_settings.textsize
+            esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
+
+            game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
+            for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+                if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("Cracked esp")==nil  then -- craeting checks for team check, local player etc
+                    esp.Text = "{"..v.Name.."}"
+                    gui:Clone().Parent = v.Character.Head
+            end
+            end
+            end)
+        end
+    }
+
     MainTab:Toggle{
         Name = "Anti Afk",
         StartingState = true,
@@ -471,9 +530,9 @@ if game.PlaceId == 6206893534 then
         Description = "Makes your hp full",
         Callback = function(v) 
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(86.1433258, 3.40000033, 62.739399, 0.991300523, -2.61786204e-10, -0.131618053, 2.08864565e-10, 1, -4.158901e-10, 0.131618053, 3.84781734e-10, 0.991300523)
-            wait(0.005)
+            wait(1)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(78.9045105, 3.42875648, 83.7675018, -0.996400654, -1.74054815e-08, 0.0847685188, -8.00758215e-09, 1, 1.11205445e-07, -0.0847685188, 1.10126386e-07, -0.996400654)
-            wait(0.005)
+            wait(0.5)
             local Event = game:GetService("ReplicatedStorage").Remotes.PushUp
             Event:FireServer()
         end
