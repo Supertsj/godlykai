@@ -449,7 +449,7 @@ if game.PlaceId == 6206893534 then
 
     MainTab:Button{
         Name = "esp",
-        Description = "Gives you a tool to tp you wherever you click!",
+        Description = "Shows you where everyone are!",
         Callback = function(args, speaker)
             --- Tut
  
