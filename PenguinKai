@@ -37,6 +37,33 @@ if game.PlaceId == 6206893534 then
         end
     }
 
+	MainTab:Slider{
+        Name = "Hitbox changer!",
+        Default = 20,
+        Min = 0,
+        Max = 500,
+        Callback = function(v)
+			_G.HeadSize = v
+			_G.Disabled = true
+
+			game:GetService('RunService').RenderStepped:connect(function()
+			if _G.Disabled then
+			for i,v in next, game:GetService('Players'):GetPlayers() do
+			if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+			pcall(function()
+			v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+			v.Character.HumanoidRootPart.Transparency = 0.7
+			v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+			v.Character.HumanoidRootPart.Material = "Neon"
+			v.Character.HumanoidRootPart.CanCollide = false
+			end)
+			end
+			end
+			end
+			end)
+        end
+    }
+
     MainTab:Button{
         Name = "Chat Translator",
         Description = "translates your chat from any language to english!",
@@ -2018,5 +2045,5 @@ if game.PlaceId == 6206893534 then
             label.TextWrapped = true
         end
     }
-    
+
 end
